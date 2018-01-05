@@ -11,22 +11,30 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
+ * Class that initializes a Retrofit client and holds a singleton instance of itself so it can be accessed easily.
+ *
  * Created by amilcar on 1/4/18.
  */
 
 public class NetworkManager {
 
+    //Base url for The Movie DB's endpoints
     private final static String BASE_URL = "http://api.themoviedb.org/";
 
     /*
-    Follow the steps described on the "Stage 1 - API Hints" section of this document:
+    Follow the steps described on the "Stage 1 - API Hints" section of this document in order to get
+    your own API key.
 
     https://docs.google.com/document/d/1ZlN1fUsCSKuInLECcJkslIqvpKlP7jWL2TP9m6UiA6I/pub?embedded=true
+
 
      */
     private final static String API_KEY = "";
 
-    private MovieService movieService;
+    //Interface that handles Retrofit's calls
+    private MovieService mMovieService;
+
+    //Singleton instances of NetworkManager
     private static NetworkManager INSTANCE;
 
     public static NetworkManager getInstance() {
@@ -38,6 +46,7 @@ public class NetworkManager {
         return INSTANCE;
     }
 
+    //Constructor that initializes a Retrofit client
     private NetworkManager() {
         OkHttpClient client = new OkHttpClient.Builder().addInterceptor(new Interceptor() {
             @Override
@@ -55,10 +64,10 @@ public class NetworkManager {
                 .client(client)
                 .build();
 
-        movieService = retrofit.create(MovieService.class);
+        mMovieService = retrofit.create(MovieService.class);
     }
 
     public MovieService getMovieService() {
-        return movieService;
+        return mMovieService;
     }
 }

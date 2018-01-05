@@ -23,7 +23,10 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
 
     private final static String EXT_MOVIES = "EXT_MOVIES";
 
+    //Movie adapter that takes care of binding the appropriate movie items into the RecyclerView
     private MovieAdapter mMovieAdapter;
+
+    //Error message that indicates if something went wrong with the API request
     private TextView mInternetErrorMessage;
 
     @Override

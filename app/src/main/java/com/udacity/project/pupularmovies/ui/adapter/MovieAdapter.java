@@ -14,28 +14,31 @@ import com.udacity.project.pupularmovies.network.model.Movie;
 import java.util.ArrayList;
 
 /**
+ * Adapter class that takes care of provide item views to the RecyclerView
+ * <p>
  * Created by amilcar on 1/4/18.
  */
 
 public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieHolder> {
-    private ArrayList<Movie> movies;
-    private OnMovieClickListener listener;
+    private ArrayList<Movie> mMovies;
+    private OnMovieClickListener mListener;
 
+    //Interface that notifies when a movie item has been clicked
     public interface OnMovieClickListener {
         void onMovieClicked(Movie movie);
     }
 
     public MovieAdapter(OnMovieClickListener listener) {
-        this.listener = listener;
+        this.mListener = listener;
     }
 
     public void updateMovies(ArrayList<Movie> movies) {
-        this.movies = movies;
+        this.mMovies = movies;
         notifyDataSetChanged();
     }
 
     public ArrayList<Movie> getMovies() {
-        return movies;
+        return mMovies;
     }
 
     @Override
@@ -46,14 +49,17 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieHolder>
 
     @Override
     public void onBindViewHolder(MovieHolder holder, int position) {
-        holder.bind(movies.get(position));
+        holder.bind(mMovies.get(position));
     }
 
     @Override
     public int getItemCount() {
-        return movies == null ? 0 : movies.size();
+        return mMovies == null ? 0 : mMovies.size();
     }
 
+    /**
+     * ViewHolder class for movie items
+     */
     class MovieHolder extends RecyclerView.ViewHolder {
         final ImageView movieImage;
         final TextView movieTitle;
@@ -64,11 +70,16 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieHolder>
             movieTitle = itemView.findViewById(R.id.tv_movie_title);
         }
 
+        /**
+         * Binds the movie info with the UI elements
+         *
+         * @param movie Movie to be bound
+         */
         void bind(final Movie movie) {
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    listener.onMovieClicked(movie);
+                    mListener.onMovieClicked(movie);
                 }
             });
             Picasso.with(itemView.getContext()).load(movie.getPosterPath()).into(movieImage);

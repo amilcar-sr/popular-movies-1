@@ -25,6 +25,8 @@ import static java.lang.annotation.RetentionPolicy.SOURCE;
 
 public class MovieLoader extends AsyncTaskLoader<ArrayList<Movie>> {
 
+    //IntDef used to validate the parameters passed to this Loaded constructor
+    //this way we make sure we're passing SORT_BY_RATE or SORT_BY_POPULAR
     @Retention(SOURCE)
     @IntDef({SORT_BY_RATE, SORT_BY_POPULAR})
     public @interface SortMode {
@@ -35,8 +37,8 @@ public class MovieLoader extends AsyncTaskLoader<ArrayList<Movie>> {
     public static final int SORT_BY_POPULAR = 0;
     public static final int SORT_BY_RATE = 1;
 
+    //Indicates whether this loader will fetch popular or top rated movies
     private final int sortMode;
-
 
     public MovieLoader(@NonNull Context context, @SortMode int sortMode) {
         super(context);
