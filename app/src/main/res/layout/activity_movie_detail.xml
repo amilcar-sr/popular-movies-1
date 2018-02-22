@@ -1,48 +1,83 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.udacity.project.pupularmovies.ui.activity.MovieDetailActivity">
+    tools:context="com.udacity.project.popularmovies.ui.activity.MovieDetailActivity">
 
-    <LinearLayout
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/linearLayout2"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        tools:context="com.udacity.project.pupularmovies.ui.activity.MovieDetailActivity">
+        android:layout_height="wrap_content">
 
         <ImageView
             android:id="@+id/iv_movie_image"
+            android:layout_width="150dp"
+            android:layout_height="200dp"
+            android:layout_marginBottom="16dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:contentDescription="@string/movie_poster_content_description"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_movie_release_year"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="42dp"
+            android:layout_marginTop="8dp"
+            android:textSize="24sp"
+            app:layout_constraintStart_toEndOf="@+id/iv_movie_image"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="2015" />
+
+        <TextView
+            android:id="@+id/tv_movie_rate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            app:layout_constraintStart_toStartOf="@+id/tv_movie_release_year"
+            app:layout_constraintTop_toBottomOf="@+id/tv_movie_release_year"
+            tools:text="8.1/10" />
+
+        <com.like.LikeButton
+            android:id="@+id/btn_movie_favorite"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="25dp"
+            app:icon_size="20dp"
+            app:icon_type="heart"
+            app:layout_constraintStart_toEndOf="@+id/iv_movie_image"
+            app:layout_constraintTop_toBottomOf="@+id/tv_movie_rate" />
+
+        <TextView
+            android:id="@+id/tv_movie_plot"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="16dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/iv_movie_image"
+            tools:text="Movie plot" />
+
+        <android.support.design.widget.TabLayout
+            android:id="@+id/tl_movie_related"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_movie_plot" />
+
+        <android.support.v4.view.ViewPager
+            android:id="@+id/vp_movie_related"
             android:layout_width="match_parent"
             android:layout_height="300dp"
-            android:contentDescription="@string/movie_poster_content_description" />
+            app:layout_constraintTop_toBottomOf="@+id/tl_movie_related" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:orientation="vertical"
-            android:padding="16dp">
-
-            <TextView
-                android:id="@+id/tv_movie_release_date"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-
-            <TextView
-                android:id="@+id/tv_movie_vote_average"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp" />
-
-            <TextView
-                android:id="@+id/tv_movie_plot"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp" />
-        </LinearLayout>
-
-    </LinearLayout>
+    </android.support.constraint.ConstraintLayout>
 
 </ScrollView>

@@ -1,9 +1,13 @@
 <resources>
-    <string name="app_name">Pupular Movies</string>
-    <string name="release_date">Release Date: %s</string>
-    <string name="vote_average">Vote Average: %.1f</string>
+    <string name="app_name">Popular Movies</string>
     <string name="internet_connection_error_message">Couldn\'t fetch movies, please check your internet connection or your API_KEY in NetworkManager class.</string>
     <string name="movie_poster_content_description">Movie poster</string>
     <string name="most_popular">Most Popular</string>
     <string name="highest_rated">Highest Rated</string>
+    <string name="share_trailer">Share Trailer</string>
+    <string name="base_youtube_url">https://www.youtube.com/watch?v=%s</string>
+    <string name="favorite">Favorite</string>
+    <string name="reviews_tab_title">Reviews</string>
+    <string name="trailers_tab_title">Trailers</string>
+    <string name="no_favorites_message">You haven\'t added a Movie to Favorites yet.</string>
 </resources>
